@@ -62,7 +62,7 @@ def generate_reply(message, history=None, model="gemini-1.5-flash", temperature=
     client = _gemini_client()
     if client is not None:
         try:
-            model_id = model or "gemini-1.5-flash"
+            model_id = model or "gemini-2.5-flash"
             model_obj = client.GenerativeModel(model_id)
 
             # Build full conversation context
