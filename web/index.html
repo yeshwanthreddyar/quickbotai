@@ -1,0 +1,33 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>QuickBot AI (Flask)</title>
+  </head>
+  <body style="font-family: system-ui, sans-serif; padding: 24px;">
+    <h1>QuickBot AI — Flask backend</h1>
+    <p>This is a placeholder UI. Build your real React app and copy its <code>dist/</code> into the <code>web/</code> folder.</p>
+    <form id="chat-form">
+      <input id="msg" placeholder="Say hello..." style="padding:8px; width: 280px;" />
+      <button type="submit" style="padding:8px 12px;">Send</button>
+    </form>
+    <pre id="out" style="margin-top:16px; white-space: pre-wrap;"></pre>
+    <script>
+      const f = document.getElementById('chat-form');
+      const msg = document.getElementById('msg');
+      const out = document.getElementById('out');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: msg.value })
+        });
+        const data = await res.json();
+        out.textContent = data.reply || JSON.stringify(data, null, 2);
+      });
+    </script>
+  </body>
+</html>
